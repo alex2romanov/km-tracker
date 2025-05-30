@@ -34,9 +34,10 @@ def index():
             save_data(data)
         return redirect("/")
 
-    # Sort by kilometers and find max for percentage with fallback
+    # Sort by kilometers and find max for percentage with safe fallback
     sorted_data = dict(sorted(data.items(), key=lambda x: -x[1]))
-    max_km = max(sorted_data.values()) if sorted_data.values() else 1  # Fallback to 1 if all values are 0
+    values = list(sorted_data.values())
+    max_km = max(values) if values and max(values) > 0 else 1  # Fallback to 1 if all values are 0 or empty
     return render_template("index.html", data=sorted_data, max_km=max_km, valid_names=VALID_NAMES)
 
 if __name__ == "__main__":
