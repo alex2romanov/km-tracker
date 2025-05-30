@@ -48,6 +48,7 @@ def load_data():
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
+
             # Ensure all valid names have an entry, defaulting to 0
             for name in VALID_NAMES:
                 if name not in data:
