@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Who Runs the Month? – June Race</title>
+  <title>Трекер километров</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Fallback styles in case Tailwind fails to load */
@@ -35,17 +35,21 @@
     .justify-between { justify-content: space-between; }
     .justify-start { justify-content: flex-start; }
     .items-center { align-items: center; }
-    .min-h-screen { min-height: 100vh; `_x000D_
+    .min-h-screen { min-height: 100vh; }
     .w-full { width: 100%; }
     .max-w-xl { max-width: 36rem; }
     .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
   </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start py-10">
-  <h1 class="text-3xl font-bold mb-6">Who Runs the Month? – June Race</h1>
+  <h1 class="text-3xl font-bold mb-6">Трекер километров</h1>
 
   <form method="post" class="flex space-x-4 mb-6">
-    <input name="name" id="nameInput" type="text" placeholder="Имя (напр. Виктор)" class="border p-2 rounded" required>
+    <select name="name" id="nameInput" class="border p-2 rounded" required>
+      {% for name in valid_names %}
+        <option value="{{ name }}">{{ name }}</option>
+      {% endfor %}
+    </select>
     <input name="km" id="kmInput" type="number" placeholder="Км (напр. 10)" class="border p-2 rounded" required step="0.1">
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Добавить</button>
   </form>
