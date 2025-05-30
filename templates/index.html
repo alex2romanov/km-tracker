@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Учёт километров</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .bar { background: #4caf50; height: 24px; margin-bottom: 10px; color: white; text-align: right; padding-right: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Учёт километров</h1>
+
+  <form method="post">
+    <input name="name" placeholder="Имя" required>
+    <input name="km" type="number" placeholder="Км" required>
+    <button type="submit">Добавить</button>
+  </form>
+
+  <h2>Результаты:</h2>
+  {% for name, km in data.items() %}
+    <div>{{ name }}: {{ km }} км</div>
+    <div class="bar" style="width: {{ km * 5 }}px">{{ km }}</div>
+  {% endfor %}
+</body>
+</html>
