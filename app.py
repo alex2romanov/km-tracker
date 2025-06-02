@@ -4,9 +4,8 @@ import os
 
 app = Flask(__name__)
 
-DATA_FILE = "data.json"
+DATA_FILE = os.environ.get("DATA_FILE", "/data/data.json")
 VALID_NAMES = ["Виктор", "Эми", "Леша"]  # Pre-defined list of names
-
 def load_data():
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r", encoding="utf-8") as f:
