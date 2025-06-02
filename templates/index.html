@@ -39,6 +39,17 @@
     .w-full { width: 100%; }
     .max-w-xl { max-width: 36rem; }
     .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
+
+    /* Стили для рубежных точек */
+    .milestone {
+      position: relative;
+      top: -1.5rem;
+      font-size: 0.75rem;
+      color: #4b5563;
+    }
+    .milestone-10 { left: 10%; }
+    .milestone-50 { left: 50%; }
+    .milestone-100 { left: 100%; transform: translateX(-100%); }
   </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start py-10">
@@ -61,10 +72,14 @@
           <span class="font-medium">{{ name }}</span>
           <span class="text-sm text-gray-600">{{ "%.1f" | format(km) }} км</span>
         </div>
-        <div class="w-full bg-gray-300 rounded-full h-4">
+        <div class="w-full bg-gray-300 rounded-full h-4 relative">
           <div class="h-4 rounded-full {{ 'bg-purple-500' if name == 'Виктор' else 'bg-pink-500' if name == 'Эми' else 'bg-blue-500' if name == 'Леша' else 'bg-green-500' }}"
-               style="width: {{ (km / max_km * 100) | round }}%">
+               style="width: {{ (km / 100 * 100) | round }}%">
           </div>
+          <!-- Рубежные точки -->
+          <span class="milestone milestone-10 absolute">10 км</span>
+          <span class="milestone milestone-50 absolute">50 км</span>
+          <span class="milestone milestone-100 absolute">100 км</span>
         </div>
       </div>
     {% endfor %}
