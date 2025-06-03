@@ -40,16 +40,29 @@
     .max-w-xl { max-width: 36rem; }
     .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
 
-    /* Стили для рубежных точек */
+    /* Стили для рубежных точек (метки) */
     .milestone {
       position: relative;
       top: -1.5rem;
       font-size: 0.75rem;
       color: #4b5563;
     }
-    .milestone-10 { left: 10%; }
+    .milestone-20 { left: 20%; }
     .milestone-50 { left: 50%; }
-    .milestone-100 { left: 95%; transform: translateX(-100%); } /* Сдвигаем влево на 5% */
+    .milestone-70 { left: 65%; transform: translateX(-100%); } /* Сдвигаем влево на 5% от 70% */
+
+    /* Стили для вертикальных палочек */
+    .milestone-line {
+      position: absolute;
+      top: 0;
+      height: 1rem; /* Совпадает с высотой прогресс-бара */
+      width: 2px;
+      background-color: #4b5563; /* Тот же цвет, что у меток */
+      z-index: 1; /* Чтобы линия была поверх прогресс-бара */
+    }
+    .milestone-line-20 { left: 20%; }
+    .milestone-line-50 { left: 50%; }
+    .milestone-line-70 { left: 70%; }
   </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start py-10">
@@ -76,10 +89,14 @@
           <div class="h-4 rounded-full {{ 'bg-purple-500' if name == 'Виктор' else 'bg-pink-500' if name == 'Эми' else 'bg-blue-500' if name == 'Леша' else 'bg-green-500' }}"
                style="width: {{ (km / 100 * 100) | round }}%">
           </div>
-          <!-- Рубежные точки -->
-          <span class="milestone milestone-10 absolute">10 км</span>
+          <!-- Вертикальные палочки -->
+          <div class="milestone-line milestone-line-20"></div>
+          <div class="milestone-line milestone-line-50"></div>
+          <div class="milestone-line milestone-line-70"></div>
+          <!-- Рубежные точки (метки) -->
+          <span class="milestone milestone-20 absolute">20 км</span>
           <span class="milestone milestone-50 absolute">50 км</span>
-          <span class="milestone milestone-100 absolute">100 км</span>
+          <span class="milestone milestone-70 absolute">70 км</span>
         </div>
       </div>
     {% endfor %}
